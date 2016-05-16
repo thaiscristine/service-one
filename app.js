@@ -4,16 +4,23 @@
 var express = require('express');
 var app = express();
 
-/* caminhos */
-var destaques = require('./controllers/destaques'); // roteando o caminho e colocando em uma variavel
-var duplas = require('./controllers/duplas'); // roteando o caminho e colocando em uma variavel
+/* caminho */
+var controllers = require('./controllers'); // variavelCaminho// procura pelo arquivo index  (controllers/index) 
 
 /* gets */
-app.get('/destaques', destaques.destaques);	 // variavel.nome_Da_Lista
-app.get('/duplas', duplas.duplas);	 		 // variavel.nome_Da_Lista
+app
+	.route('/funcao')	 			    // define qual será o caminho (rota)
+	.get(controllers.destaques.listar)  // listar // varPastaCaminho.arquivoJS.referenciaDaFuncao (get)
+	.post(controllers.destaques.criar)  // criar  // varPastaCaminho.arquivoJS.referenciaDaFuncao (post)
+
+/*app
+	.route('/cri')
+	.get(controllers.destaques.create) 
+	
 
 /* ouvindo porta 3000 */
-app.listen(3000, function(){
-	console.log('> localhost:3000'); // aparecer in terminal to see that its ok
-});
+app.listen(3000, serverLogInit);
 
+function serverLogInit() {
+	console.log('> localhost:3000'); // aparecer in terminal to see that its ok
+}
