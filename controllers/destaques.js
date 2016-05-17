@@ -8,35 +8,56 @@
 
 'use strict';
 module.exports = {
-	listar: funcList, // referencia : nomeDaFuncao
-	criar: funcCriar // referencia : nomeDaFuncao
-	/*create: criar*/
+
+	// multipleUsers
+	listar	     : funcList,  		// referencia : nomeDaFuncao,
+	criar 	   	 : funcCriar, 		// referencia : nomeDaFuncao,
+	// singleUser
+	listarSingle : funcListSingle, 	// referencia : nomeDaFuncao
+	deletar      : funcDel,			// referencia : nomeDaFuncao,
+	atualizar    : funcUpdate		// referencia : nomeDaFuncao
+
 }; 
 
 function funcList(req, res) {
+
 	var lista = [		
 		{ name: 'André Mello e Diego'},
-		{ name: 'Jorge e Mateus'}
+		{ name: 'Jorge e Mateus'},
+		{ name: 'LISTANDO'}
 	];
-	res.json(lista);
+	res
+		.status(201)
+		.json(lista);
 }
 
 function funcCriar(req, res) {
 	res
 		.status(201)
 		.json({
-			message: 'posted'
+			message: 'criado'
 		});
+		//res.status(201); // status code de sucesso com criacao
 }
 
-function criar(req, res){
-	// forma a se acostumar
-	res
-		.status(201)
-		.json({
-			message: 'created'
-		});
+// SingleUser
 
-	// forma de sempre
-	//res.status(201); // status code de sucesso com criacao
+function funcListSingle(req, res){
+ // console.log(req.params);
+	var user = { name: 'Jorge e Mateus'};
+	res.json(user);
+}
+
+function funcUpdate(req,res){
+	var user = { name: 'Tha'};
+	res.json({
+		message: 'updated'
+	});
+}
+
+function funcDel(req,res){
+	var user = { name: ''};
+	res.json({
+		message: 'deleted'
+	});
 }
